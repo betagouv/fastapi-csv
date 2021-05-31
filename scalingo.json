@@ -1,0 +1,20 @@
+{
+  "name": "FastAPI CSV",
+  "description": "FastAPI CSV",
+  "logo": "https://fastapi.tiangolo.com/img/icon-white.svg",
+  "repository": "https://github.com/betagouv/fastapi-csv",
+  "website": "https://github.com/jrieke/fastapi-csv",
+  "env": {
+    "CSV_URL": {
+      "description": "The URL to the CSV data file that you want to serve by your API.",
+      "value": "https://raw.githubusercontent.com/jrieke/fastapi-csv/main/people.csv",
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "amount": 1,
+      "size": "S"
+    }
+  }
+}
