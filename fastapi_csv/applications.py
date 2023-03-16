@@ -1,20 +1,15 @@
-"""
-Contains the main `FastAPI_CSV` class, which wraps `FastAPI`.
-"""
-
+# Contains the main `FastAPI_CSV` class, which wraps `FastAPI`.
 import inspect
 import logging
 import re
 import sqlite3
 from pathlib import Path
 from typing import Union, Type
-
 import fastapi
 import numpy as np
 import pandas as pd
 import pydantic
 from fastapi import FastAPI
-
 
 def is_date_string(string: str) -> bool:
     """Check if a string is a date string."""
@@ -34,7 +29,6 @@ def create_query_param(name: str, type_: Type, default) -> pydantic.fields.Model
     )
     return field
 
-
 def dtype_to_type(dtype) -> Type:
     """Convert numpy/pandas dtype to normal Python type."""
     if dtype == np.object:
@@ -42,25 +36,19 @@ def dtype_to_type(dtype) -> Type:
     else:
         return type(np.zeros(1, dtype).item())
 
-
 class FastAPI_CSV(FastAPI):
     # TODO: Implement a way to modify auto-generated endpoints, e.g. by
-    #
     # @app.modify("/people")
     # def modify_people(results: List, new_query_param: str = "foo"):
-    #
     #     # `results` are the dicts/json that are normally returned by the endpoint.
     #     # Modify them as you like.
     #     results.append({"Hello": "World"})
-    #
     #     # Any additional function args (like `new_query_param`) are added as p
     #     # arameters to the endpoint, just like in normal fastapi.
     #     results.append({"Hello": new_query_param})
-    #
     #     # You can also do a manual query on the database that's created from the CSV.
     #     rows = app.query_database(f"SELECT * FROM people WHERE first_name={new_query_param}")
     #     results.append(rows)
-    #
     #     # Return modified results so they get passed to the user.
     #     return results
 
@@ -80,9 +68,7 @@ class FastAPI_CSV(FastAPI):
         df = self.update_database()
 
         # Add an endpoint for the CSV file with one query parameter for each column.
-        # We hack into fastapi a bit here to inject the query parameters at runtime
-        # based on the column names/types.
-
+        # We hack into fastapi a bit here to inject the query parameters at runtime based on the column names/types.
         # First, define a generic endpoint method, which queries the database.
         def generic_get(**kwargs):
             selected_cols = []
@@ -215,9 +201,7 @@ class FastAPI_CSV(FastAPI):
                 return False
             reg = re.compile(expr)
             return reg.search(item) is not None
-
         self.con.create_function("REGEXP", 2, regexp)
-
         return df
 
     def _find_route(self, route_path):
