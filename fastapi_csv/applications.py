@@ -64,7 +64,7 @@ class FastAPI_CSV(FastAPI):
     #     # Return modified results so they get passed to the user.
     #     return results
 
-    def __init__(self, csv_path: Union[str, Path]) -> None:
+    def __init__(self, csv_path: Union[str, Path], delimiter: Union[str, str]) -> None:
         """
         Initializes a FastAPI instance that serves data from a CSV file.
         Args:
@@ -76,6 +76,7 @@ class FastAPI_CSV(FastAPI):
         self.csv_path = csv_path
         self.table_name = Path(self.csv_path).stem.replace('-', '_')
         self.con = None
+        self.delimiter = delimiter
         df = self.update_database()
 
         # Add an endpoint for the CSV file with one query parameter for each column.
@@ -193,7 +194,7 @@ class FastAPI_CSV(FastAPI):
 
         # Download excel file from Google Sheets, read it with pandas and write to
         # database.
-        df = pd.read_csv(self.csv_path)
+        df = pd.read_csv(self.csv_path, delimiter=self.delimiter, engine ='python')
         self.con = sqlite3.connect(":memory:", check_same_thread=False)
         df.to_sql(self.table_name, self.con)
 
