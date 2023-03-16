@@ -29,7 +29,7 @@ an API for it, run one of:
 
 ```bash
 # from file
-fastapi-csv people.csv
+fastapi-csv people.csv --delimiter "\t"
 
 # directly from URL
 fastapi-csv https://raw.githubusercontent.com/jrieke/fastapi-csv/main/people.csv
