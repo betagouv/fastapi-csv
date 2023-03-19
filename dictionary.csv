@@ -1,6 +1,6 @@
-TL,SL,POS,Domain
-Auto,car,noun,general
-Mutter,mother,noun,general
-Mutter,screw,noun,technical
-Leben,life,noun,general
-leben,to live,verb,general
+TL,TLMorph,SL,SLMorph,POS,Domain
+Auto,m,car,,noun,general
+Mutter,f,mother,,noun,general
+Mutter,f,screw,,noun,technical
+Leben,n,life,,noun,general
+leben,trv, intrv,to live,,verb,general
