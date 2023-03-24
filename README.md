@@ -12,13 +12,11 @@ fast even for huge files.
 
 ![](images/visual-demo.png)
 
-
 ## Installation
 
 ```bash
 pip install fastapi-csv
 ```
-
 
 ## How to use it
 
@@ -29,16 +27,15 @@ an API for it, run one of:
 
 ```bash
 # from file
-fastapi-csv people.csv
+fastapi-csv dictionary.csv --delimiter "\t"
 
 # directly from URL
 fastapi-csv https://raw.githubusercontent.com/jrieke/fastapi-csv/main/people.csv
 
 # With options : specify the delimiter character in the CSV, the host and port for the server
-fastapi-csv people.csv --delimiter "|" --host "127.0.0.1" --port 1234
+fastapi-csv dictionary.csv --delimiter "|" --host "127.0.0.1" --port 1234
 
 ```
-
 Either command should start a fastapi instance, which has auto-generated endpoints and
 query parameters based on the CSV file. Here, the API has an endpoint `/people`
 (same name as the file), which can be queried using the CSV's column names, e.g. you can
@@ -56,7 +53,6 @@ types, e.g.
 
 Check out the API docs for more information and an interactive demo, they should be at
 http://127.0.0.1:8000/docs
-
 
 ### 2. From Python
 
@@ -85,10 +81,8 @@ all the stuff you can do with a normal fastapi instance, e.g. add a new endpoint
 def hello(self):
     return {"Hello:", "World"}
 ```
-
 In the future, you will also be able to easily modify existing endpoints that were
 generated from the CSV file.
-
 
 **Updating the data**
 
